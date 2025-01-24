@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/css/science.css'%}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <title>الدورات</title>
+</head>
+<body>
+  <div class="left_section">
+     <!-- header starts -->
+    <div class="header">
+     <div class="header_left">
+       <img src="{% static 'core/img/logo2.png'%}" class="logo">
+     </div>
+     <div class="header_search">
+      <form method="GET">
+        <input type="text" name="q" placeholder="Search" class="show">
+        <button type="submit" class="search_button"><i class="material-symbols-outlined">Search</i></button>
+    </form>
+    
+     </div> 
+     <div class="header_icons">
+     
+
+      <div class="head">
+      <!-- <i class="material-symbols-outlined">account_circle</i>  -->
+      <a href="{% url 'core:main' %}">الرئيسية</a>        <i class="material-symbols-outlined">Home</i>  
+      </div>
+      <div class="space">
+        <a href="{% url 'core:dashboard' %}"><span class="material-symbols-outlined">account_circle</span></a>
+        </div>
+    </div>
+    </div>
+    <!-- header ends -->
+    <div class="modules">
+        <div class="ic"><i id="left" class="fa-solid fa-angle-left"></i></div>
+        <ul class="module"id="category-list">
+            <li class="mat science arabic  1 2 3" data-category="informatique" ><a href="#" id="1"><span class="mateire">اعلام الي <span class="material-symbols-outlined">devices</span></span></a></li>
+            <li class="mat science active all 1 2 3"data-category="anglais"><a href="#" id="1"><span class="material-icons-outlined" id="matiere">abc</span><span class="mateire">اللغة الانجليزية</span></a></li>
+            <li class="mat science arabic all 1 2 3"data-category="islamique"><a href="#" id="1"><span class="mateire">العلوم الاسلامية<span class="material-symbols-outlined" id="matiere">prayer_times</span></span></a></li>
+            <li class="mat science arabic all 1 2 3"data-category="histoire"><a href="#" id="1"><span  class="mateire">تاريخ وجغرافيا<span class="material-symbols-outlined" id="matiere">travel_explore</span></span></a></li>
+            <li class="mat science arabic all 1 2 3"data-category="francais"><a href="#" id="1"><span class="mateire">اللغة الفرنسية<span class="material-symbols-outlined" id="matiere">language_french </span></span></a></li>
+            <li class="mat science math tech 1 2 3"data-category="physics"><a href="#" id="1"><span class="mateire">علوم فيزيائية<span class="material-symbols-outlined" id="matiere"> experiment</span></span></a></li>
+            <li class="mat science arabic science math 1 2 3"data-category="science"><a href="#" id="1"><span class="mateire">علوم طبيعية<span class="material-symbols-outlined" id="matiere"> biotech</span></span></a></li>
+            <li class="mat science arabic all 1 2 3"data-category="math"><a href="#" id="1"><span class="mateire">رياضيات<span class="material-symbols-outlined" id="matiere">function</span></span></a></li>
+            <li class="mat science arabic all 1 2 3"data-category="arabe"><a href="#" id="1"><span class="mateire">اللغة العربية<span class="material-symbols-outlined">book_5</span></span></a></li>
+            <li class="mat others 0"data-category="amazir"><a href="#" id="0"><span class="mateire">امازيغية<span class="material-symbols-outlined">interpreter_mode</span></span></a></li>
+            <li class="mat arabic all 2 3"data-category="philo"><a href="#" id="2"><span class="mateire">فلسفة<span class="material-symbols-outlined">book_5</span></span></a></li>
+            <li class="mat others 0"data-category="web"><a href="#" id="0"><span class="mateire">برمجة مواقع <span class="material-symbols-outlined" id="matiere">code</span></span></a></li>
+            <li class="mat others 0"data-category="design"><a href="#" id="0"><span class="mateire">تصميم <span class="material-symbols-outlined" id="matiere">brush</span></span></a></li>
+            <li class="mat others 0"data-category="security"><a href="#" id="0"><span class="mateire">الامن السيبراني <span class="material-symbols-outlined" id="matiere">security</span></span></a></li>
+            <li class="mat languages 2 3"data-category="spa"><a href="#" id="2"><span class="mateire">الاسبانية <span class="material-symbols-outlined" id="matiere">record_voice_over</span></span></a></li>
+            <li class="mat others 0 "data-category="info"><a href="#" id="0"><span class="mateire">اعلام الي <span class="material-symbols-outlined" id="matiere">computer</span></span></a></li>
+            <li class="mat comtability 1 2 3"data-category="calc"><a href="#" id="1"><span class="mateire">تسيير المحاسبي<span class="material-symbols-outlined">contract</span></span></a></li>
+            <li class="mat comtability 1 2 3"data-category="law"><a href="#" id="1"><span class="mateire">القانون<span class="material-symbols-outlined">developer_guide</span></span></a></li>
+            <li class="mat comtability 1 2 3"data-category="eco"><a href="#" id="1"><span class="mateire">الاقتصاد<span class="material-symbols-outlined">query_stats</span></span></a></li>
+            <li class="mat languages 2 3"data-category="almon"><a href="#" id="2"><span class="mateire">الالمانية<span class="material-symbols-outlined">language </span></span></a></li>
+            <li class="mat languages 2 3"data-category="italy"><a href="#" id="2"><span class="mateire">الايطالية<span class="material-symbols-outlined"> g_translate</span></span></a></li>
+            <li class="mat science tech 1 2 3"data-category="tech"><a href="#" id="1"><span class="mateire">التكنولوجيا-هندسةالطرائق<span class="material-symbols-outlined">power</span></span></a></li>
+            <!-- Autres liens de module -->
+        </ul>
+        <div class="ic"><i id="right" class="fa-solid fa-angle-right"></i></div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const modules = document.querySelectorAll('.module li');
+
+    modules.forEach(module => {
+        module.addEventListener('click', function(event) {
+            event.preventDefault();
+            modules.forEach(otherModule => {
+                otherModule.classList.remove('active');
+            });
+            module.classList.add('active');
+        });
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var category = "{{ category }}"; // Get the category value from the Django template
+    var level = "{{ level }}"; // Get the level value from the Django template
+    var listItems = document.querySelectorAll('#category-list li');
+
+    listItems.forEach(function(item) {
+        if (category === 'others') {
+            if ((item.classList.contains(category) || item.classList.contains('all')) && !(category === 'others' && item.classList.contains('all'))) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        } else {
+            if ((item.classList.contains(category) || item.classList.contains('all')) && (item.classList.contains(level))) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        }
+    });
+});
+
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          var listItems = document.querySelectorAll('#category-list li');
+          var cards = document.querySelectorAll('.video');
+  
+          listItems.forEach(function(item) {
+              item.addEventListener('click', function(event) {
+                  event.preventDefault();
+                  var selectedCategory = item.dataset.category;
+  
+                  // Remove 'active' class from all list items
+                  listItems.forEach(function(li) {
+                      li.classList.remove('active');
+                  });
+                  // Add 'active' class to the clicked list item
+                  item.classList.add('active');
+  
+                  // Hide all cards
+                  cards.forEach(function(card) {
+                      card.style.display = 'none';
+                  });
+  
+                  // Show cards with matching category
+                  cards.forEach(function(card) {
+                      if (card.dataset.category === selectedCategory || selectedCategory === 'all') {
+                          card.style.display = 'block';
+                      }
+                  });
+              });
+          });
+      });
+  </script>
+        <!-- videos starts -->
+        <div class="videos_section">
+          <div class="video_container">
+            {% for course in courses %}
+            <div class="video {{ course.category }} all" data-category="{{ course.category }}">
+                <div class="events_item">
+                    <div class="thumb">
+                        <a href="#" onclick="confirmPurchase('{{ course.name }}', '{{ course.price }}');"><img src="{{ course.image.url }}" alt=""></a>
+                        <span class="price"><h6><em>{{ course.price_type }}</em>{{ course.price }}</h6></span>
+                    </div>
+                    <div class="down-content">
+                        <span class="author">{{ course.teacher.name }}</span>
+                        <h4>{{ course.name }}</h4>
+                        <span>{{ course.salles }} View </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}  
+          </div>
+        </div>
+        
+        <script>
+        function confirmPurchase(courseName, coursePrice) {
+            if (confirm(`Are you sure you want to buy the course "${courseName}" for ${coursePrice}?`)) {
+                window.location.href = `/Buy/${courseName}`;
+            }
+        }
+        </script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  var listItems = document.querySelectorAll('#category-list li');
+                  var cards = document.querySelectorAll('.card');
+                
+                  listItems.forEach(function(item) {
+                    item.addEventListener('click', function(event) {
+                      event.preventDefault();
+                      var selectedCategory = item.dataset.category;
+                
+                      // Hide all cards
+                      cards.forEach(function(card) {
+                        card.style.display = 'none';
+                      });
+                
+                      // Show cards with matching category
+                      cards.forEach(function(card) {
+                        if (card.dataset.category === selectedCategory || selectedCategory === 'all') {
+                          card.style.display = 'block';
+                        }
+                      });
+                    });
+                  });
+                });
+                </script>
+
+
+          </div>
+       </div>
+      <!-- videos ends -->
+        </div>
+
+  <script src="{% static 'core/js/index.js'%}"></script>
+</body>
+</html>
