@@ -189,6 +189,25 @@
 
           <!-- MESSAGES ICI -->
           <div id="messages" class="section">
+              <div class="message-container">
+              <div class="chat-list">
+                <div class="chat-list-header">
+                    <input type="text" placeholder="Search Messenger">
+                </div>
+              <!-- Hna The Reusable component ta3 chat_item : Ro7 l function ta3 this route and gave it a parameter of a list of chats dict then iterate it here-->
+               <!-- the dict : {"initial":value , "username":value,"message":value,"message_time":asStringValue , "is_unread":booleanValue} -->
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
+              
+            </div>
             <div class="container">
               <!-- msg-header section starts -->
               <div class="msg-header">
@@ -308,6 +327,7 @@
                   </div>
                 </div>
               </div>
+            </div>
             </div>
           </div>
 
