@@ -1,0 +1,439 @@
+:root {
+    --secondary : rgb(51, 0, 255);
+    --text : #000; /* Change text color to black */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background-image: var(--primary);
+    font-family: sans-serif;
+    color: var(--text);
+}
+.page{
+    direction:rtl;
+}
+
+.header {
+    /* margin-top: 8PX; */
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    height: 70px;
+    padding: 0 20px;
+    margin-top: 20PX;
+    margin-bottom: 40PX;
+    margin-left: 5PX;
+    margin-right: 5PX;
+
+}
+.header_icons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.header_icons img {
+    width: 40px;
+    border-radius: 50%;
+}
+.material-symbols-outlined {
+    cursor: pointer;
+    color: rgb(53, 52, 52);
+}
+.header_icons a {
+    text-decoration: none;
+    color: black;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+.header_icons a:hover {
+    color: blue;
+}
+.header_icons .head:hover {
+    height: 30px;
+    background-color: rgb(247, 246, 252);
+    border-top: 4px solid blue;
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    margin-top: 8px;
+}
+.header_left img {
+    height: 90px;
+    width: 90px;
+    margin-top: 35PX;
+}
+.head{
+    width: 80px;
+    margin-right: 10px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 1rem;
+    padding: .5rem 1rem;
+    text-transform: capitalize;
+    margin-bottom: -5%;
+}
+
+@media screen and (max-width: 990px) {
+    .container {
+        grid-template-columns: 1fr;
+        margin-bottom: -23%;
+    }
+     .video-playlist {
+       margin-top:11% ;
+    }
+}
+
+.main-video, .video-playlist {
+    width: 100%;
+    height: 37rem;
+}
+.main-video {
+    height: 35rem;
+}
+.main-video .title {
+    margin-top: 1rem;
+}
+
+.video-playlist .title {
+    padding-left: 1rem;
+}
+
+.video-playlist > p {
+    padding: 1rem;
+    color: var(--secondary);
+}
+
+.video-playlist .videos{
+    height: 70%;
+    overflow-y: auto;
+}
+
+.video-playlist .videos::-webkit-scrollbar {
+    width: .4rem;
+    border-radius: .4rem;
+    background-color: #0005;
+}
+
+.video-playlist .videos::-webkit-scrollbar-thumb {
+    border-radius: .4rem;
+    background-color: #7f7777;
+}
+
+.video-playlist .videos .video {
+    position: relative;
+    width: 100%;
+    height: 4rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0 1rem;
+    margin-top: .1rem;
+    cursor: pointer;
+
+    border-radius: .5rem;
+}
+
+.video-playlist .videos .video:hover {
+    background-color: #0003;
+}
+
+.video-playlist .videos .video.active {
+    background-color: #0003;
+    color: var(--secondary);
+}
+
+.main-video video {
+    width: 98%;
+    border-radius: .5rem;
+}
+
+.video img {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: invert(90%);
+}
+
+.video-playlist .videos .video.active img {
+    filter: invert(35%) sepia(100%) saturate(6312%) hue-rotate(247deg) brightness(106%) contrast(148%);
+}
+
+.video p {
+   margin-left: 2.5rem;
+}
+
+.video h3 {
+    width: 23rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    font: 100 1rem sans-serif;
+    padding: 0 .5rem;
+}
+.download-btn{
+    background-color: rgb(197, 197, 211);
+    color: #000000;
+    padding: 8px 30px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.download-btn:hover{
+    background-color: rgb(0, 4, 255); /* Adjust the color value as needed */
+    color: #ffffff; /* Adjust the text color on hover as needed */
+    /* Add any additional hover styles you want here */
+}
+ .play-video-info{
+    width: 98%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #5a5a5a;
+    margin-bottom: 10PX;
+}
+
+ .play-video-info a{
+    color: #5a5a5a;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 15px;
+}
+ .play-video-info a span{
+    width: 18px;
+    margin-left: 10px;
+}
+
+ hr{
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px;
+}
+.plublisher{
+    width: 98%;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 30PX;
+}
+.plublisher div{
+    flex: 1;
+    line-height: 18px;
+}
+.plublisher img{
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-left: 15px;
+
+}
+.plublisher div p{
+    color: #000;
+    font-weight: 600;
+    font-size: 18px;
+}
+.plublisher div span{
+    font-size: 13px;
+    color: #5a5a5a;
+}
+.plublisher button{
+    background-color: rgb(0, 4, 255);
+    color: #fff;
+    padding: 8px 30px;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.plublisher button:hover {
+    background-color: rgb(0, 4, 200); /* Slightly darker blue on hover */
+    transition: background-color 0.3s ease;
+}
+.comments{
+    margin-right: 20PX;
+    margin-top: 10%;
+}
+.comments .arrow h4{
+  margin-right: 20PX;
+}
+.arrow h4 {
+    display: inline; 
+    margin-right: 10px; 
+}
+
+.arrow .material-symbols-outlined {
+    display: inline;
+    vertical-align: middle; 
+}
+
+.add-comment{
+    display: flex;
+    align-items: center;
+    margin: 15px 0 30px 0;
+}
+.add-comment img{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-left: 15px;
+
+}
+.add-comment input{
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    width: 49%;
+    padding-top: 10px;
+    background-color: transparent;
+    margin-bottom:-5PX ;
+}
+.old-comment{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.old-comment img{
+    width: 35px;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 45px;
+}
+.old-comment h3{
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.old-comment h3{
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.old-comment h3 span{
+    font-size: 12px;
+    color: #5a5a5a;
+    font-weight: 500;
+    margin-left: 8px;
+}
+.old-comment .acomment-action{
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    font-size: 14px;
+}
+.old-comment .acomment-action .material-symbols-outlined{
+    border-radius: 0;
+    width: 20px;
+    margin-right: 5px;
+    color: #5a5a5a;
+}
+.old-comment .acomment-action .sp{
+    margin-right: 20px;
+    margin-left: 20px;
+    color: #5a5a5a;
+}
+.old-comment .acomment-action a{
+    color: #0000ff;
+    text-decoration: none;
+}
+
+ button.reply-submit {
+    margin-left: 20PX;
+    border: none;
+    outline: none;
+    background-color:  #b8b8bd;
+    color: rgb(0, 0, 0);
+    padding: 4px 4px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100PX;
+}
+
+ button.reply-submit:hover {
+    background-color: #0000ff;
+    color:aliceblue;
+ }
+ .add-comment .reply-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-comment .reply-submit .material-symbols-outlined {
+    margin-right: 5px; /* Ajustez la marge selon vos besoins */
+}
+
+.add-comment button.reply-submit:hover .material-symbols-outlined {
+    margin-right: 5px; 
+    color:aliceblue;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* To stack items vertically */
+        gap: 20px; /* Adjust the gap between items as needed */
+    
+    }
+    
+    
+    .video-playlist {
+        margin-top: -45px; 
+    }
+
+    .header {
+        height: auto;
+        padding: 0 10px;
+    }
+
+    .video-playlist {
+        margin-top:-25% ;
+     }
+
+    .header_left img {
+        height: 60px;
+        width: 60px;
+        margin-top: 0;
+    }
+
+    .header_icons img {
+        margin-top: -55%;
+        width: 30px;
+    }
+
+    .header_icons .head {
+        display: none; 
+    }
+}
+    .add-comment input{
+        margin-left: -15px;
+    }
+@media screen and (max-width: 1200px){
+    .add-comment input{
+        width: 100%;
+    }
+}

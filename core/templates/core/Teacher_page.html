@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'core/css/new.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+    <!-- header starts -->
+   <div class="header">
+    <div class="header_left">
+      <img src="{% static 'core/img/logo2.png' %}" class="logo">
+    </div>
+    <div class="header_icons">
+     <div class="head">
+        {% if tech_member %}    
+     <a href="#post" ><span class="icon-text">المنشور</span></a>
+     {% endif %}
+     <a href="#emp" ><span class="icon-text">برنامجي</span></a>
+     <a href="#course" ><span class="icon-text">الدورات</span></a>
+     <a href="{% url 'core:main' %}" id="active">
+      <div class="icon-text-container">
+        <i class="material-symbols-outlined">Home</i> <!-- Texte -->
+        <span class="icon-text">الرئيسية</span>
+      </div>
+    </a>
+     <div class="space">
+      <a href="{% url 'core:dashboard' %}"><span class="material-symbols-outlined">account_circle</span></a>
+      </div>
+     </div>
+   </div>
+   </div>
+   <!-- header ends -->
+
+
+
+    <!-- Main container start -->
+    <div class="main-container">
+        <!-- Main content start -->
+        <div class="main-content">
+            <section class="home section">
+                <div class="container">
+                    <div class="row">
+                        
+                        <div class="home-info padd-15">
+                            <h3 class="hello">الاسم: <span class="name">{{teacher.name}}</span></h3>
+                            <h3 class="my-profession">استاذ:<span class="typing">  {{teacher.module}}</span></h3>
+                            <p> 
+                                {{teacher.bio}}
+                            </p>
+                            {% if not follow %}
+                            <a href="{% url 'core:Follow_page' teacher_name=teacher.name%}" class="btn follow-me">الاشتراك {{teacher.price}} دج</a>
+                        {% endif %}
+                        </div>
+                        
+                        <div class="home-img padd-15">
+                           <img src="{{teacher.image.url}}" alt="">
+                        </div>
+                    </div>
+                        <div class="personal-info padd-15">
+                            <div class="row">
+                                <div class="info-item padd-15">
+                                    <p>الخبرة:{{teacher.experience}}<span></span></p>
+                                </div>
+                                <div class="info-item padd-15">
+                                    <p>الشهاداتت:{{teacher.Education}}<span></span></p>
+                                </div>
+
+                                <div class="info-item padd-15">
+                                    <p>ايمايل : <span>{{teacher.email}}</span></p>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </section>
+        </div>
+        <!-- Main content end -->
+    </div>
+    <!-- Main container end -->
+
+    <!-- emploi-->
+   <div class="emploi" id="emp">
+    <!-- <h1>برنامجي</h1> -->
+    <div class="emploi_img">
+       <img src="{{ teacher.Emploit.url }}" class="emploi_img">
+    </div>
+</div>
+<!--End emploi-->
+
+<!-- course-->
+<div class="course" id="course">
+    <h1>الدورات</h1>
+  <!-- videos starts -->
+  <div class="videos_section">
+    <!-- <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div> -->
+   <div class="video_container">
+
+    {%for x in courses %}
+    
+     <div class="video math  ">
+         <div class="events_item">
+             <div class="thumb">
+                 <a href="{% url 'core:videos' course_name=x.name video_id=x.id %}"><img src="{{x.image.url}}" alt=""></a>
+                 <span class="price"><h6><em>da</em>{{x.price}}</h6></span>
+             </div>
+            
+         </div>
+     </div>
+     {% endfor %}
+
+     
+<!-- videos ends -->
+</div>
+</div>
+<!-- <div class="icon"><i id="right" class="fa-solid fa-angle-right"></i></div> -->
+</div>
+<!--End course-->
+
+{% if perms.core.add_post %}
+<form action="{% url 'core:add_post' id=teacher.id %}" method="post">
+    {% csrf_token %}
+
+<div class="footer" id="post">
+    <h1>منشور</h1>
+    <input name='text' type="text" placeholder="... اكتب هنا" >
+    <input name='url' type="url" placeholder="  رابط الدعوة " >
+    <input type="submit" value="ارسال">
+ </div>
+</form>
+{% endif %}
+</body>
+</html>

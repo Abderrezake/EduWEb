@@ -1,0 +1,155 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <title>Video</title>
+    <link rel="stylesheet" href="{% static 'core/css/video.css'%}">
+</head>
+
+<body>
+
+    <!-- header starts -->
+    <div class="header">
+        <div class="header_left">
+        <img src="{% static 'core/img/logo1.png'%}" class="logo">
+        </div>
+        <div class="header_icons">
+            <a href=""><img src="{% static 'core/img/prof-sc.png'%}" alt=""></a>
+            <div class="head">
+            <!-- <i class="material-symbols-outlined">account_circle</i>  -->
+            <a href="">الرئيسية</a>        <i class="material-symbols-outlined">Home</i>  
+            <!-- <i class="material-symbols-outlined">search</i> -->
+            </div>
+        </div>
+        </div>
+    <!-- header ends -->
+    <div class="page">
+        <main class="container">
+            <section class="main-video">
+                <video src="{{ signed_url }}" controls autoplay muted></video>
+                <div class="plublisher">
+                    <a href=""><img src="{% static 'core/img/prof-sc.png'%}" alt=""></a>
+                    <div>
+                        <p>{{ video.teacher }}</p>
+                    </div>
+                    <button type="button">متابعة</button>
+                </div>
+                <div class="play-video-info">
+                    <p>{{ video.views }} مشاهدة</p>
+                    <div>
+                        <a href=""><span class="material-symbols-outlined">thumb_up</span>{{ video.likes }}</a>
+                        <a href=""><span class="material-symbols-outlined" id="top">thumb_down</span>{{ video.dislikes }}</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="video-playlist">
+                <h3 class="title">{{ course.name }}</h3>
+                <p>{{ total_duration }} &nbsp; . &nbsp; {{ total_videos }} فيديوهات</p>
+                <div class="videos">
+                    {% for video in videos %}
+                    <a href="{% url 'video_page' course_name=course.name video_id=video.id %}">
+                        <div class="video{% if video.id == video_id %} active{% endif %}" data-id="{{ video.id }}">
+                            <img src="{{ course.image.url }}" alt="{{ course.name }}">
+                            <p>{{ video.sequence_number }}. </p>
+                            <h3 class="title">{{ video.title }}</h3>
+                            <p class="time">{{ video.duration }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </section>
+    </main>
+
+
+    <div class="comments">
+        <div class="arrow" id="arrow"> <h4> 134  تعليق  <span class="material-symbols-outlined" id="arrowIcon">expand_more</span></h4></div>
+    <div class="add-comment">
+        <a href=""><img src="img/math 1.jpg" alt=""></a>
+        <input type="text" placeholder=" ... اكتب تعليقك ">
+        <button class="reply-submit">إرسال <span class="material-symbols-outlined">send</span></button>
+    </div>
+
+    <div class="appear" id="comments">
+        <div class="div old-comment">
+            <a href=""><img src="img/prof-sc.png" alt=""></a>
+            <div>
+                <h3>Manel Hachimi</h3>
+                <p>هذا الفيديو ساعدني كثيرا شكرا على الشرح بارك الله فيك</p>
+                <div class="acomment-action">
+                    <a class="reply-link" href="#">الرد</a>
+                    <!-- <span class="material-symbols-outlined">thumb_up</span>
+                    <span class="sp">244</span>
+                    <span class="material-symbols-outlined">thumb_down</span>
+                    <span class="sp">2</span>
+                    <span class="sp">الرد</span>
+                    <a href="">كل الردود</a>--> 
+                </div>
+            </div>
+        </div>
+
+        <div class="div old-comment">
+            <a href=""><img src="img/prof-sc.png" alt=""></a>
+            <div>
+                <h3>Manel Hachimi </h3>
+                <p>هذا الفيديو ساعدني كثيرا شكرا على الشرح بارك الله فيك</p>
+                <div class="acomment-action">
+                    <a class="reply-link" href="#">الرد</a>
+                    <!-- <span class="material-symbols-outlined">thumb_up</span>
+                    <span class="sp">244</span>
+                    <span class="material-symbols-outlined">thumb_down</span>
+                    <span class="sp">2</span>
+                    <span class="sp">الرد</span>
+                    <a href="">كل الردود</a>--> 
+                </div>
+            </div>
+        </div>
+
+        <div class="div old-comment">
+            <a href=""><img src="img/prof-sc.png" alt=""></a>
+            <div>
+                <h3>Manel Hachimi</h3>
+                <p>هذا الفيديو ساعدني كثيرا شكرا على الشرح بارك الله فيك</p>
+                <div class="acomment-action">
+                    <a class="reply-link" href="#">الرد</a>
+                    <!-- <span class="material-symbols-outlined">thumb_up</span>
+                    <span class="sp">244</span>
+                    <span class="material-symbols-outlined">thumb_down</span>
+                    <span class="sp">2</span>
+                    <span class="sp">الرد</span>
+                    <a href="">كل الردود</a>--> 
+                </div>
+            </div>
+        </div>
+
+        <div class="div old-comment">
+            <a href=""><img src="img/prof-sc.png" alt=""></a>
+            <div>
+                <h3>Manel Hachimi</h3>
+                <p>هذا الفيديو ساعدني كثيرا شكرا على الشرح بارك الله فيك</p>
+                <div class="acomment-action">
+                    <a class="reply-link" href="#">الرد</a>
+                    <!-- <span class="material-symbols-outlined">thumb_up</span>
+                    <span class="sp">244</span>
+                    <span class="material-symbols-outlined">thumb_down</span>
+                    <span class="sp">2</span>
+                    <span class="sp">الرد</span>
+                    <a href="">كل الردود</a>--> 
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</div>
+</div>
+            <script src="{% static 'core/js/video.js'%}"></script>
+</body>
+
+</html>

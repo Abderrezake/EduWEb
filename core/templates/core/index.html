@@ -1,0 +1,545 @@
+{% load static %}
+<!-- AVEC HTML NORMALE -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Schooline - Online School </title>
+    <link rel="shortcut icon" href="{% static 'core/img/logo2.png'%}" type="image/x-icon">
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'core/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'core/assets/css/fontawesome.css'%}">
+    <link rel="stylesheet" href="{% static 'core/assets/css/style.css'%}">
+    <link rel="stylesheet" href="{% static 'core/assets/css/owl.css'%}">
+    <link rel="stylesheet" href="{% static 'core/assets/css/animate.css'%}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <img src="{% static 'core/img/logo2.png'%}" alt="">
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                    <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="...ابحث " id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div>
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li class="scroll-to-section"><a href="#top" class="active" id="first" >الرئيسية</a></li>
+                      <li class="scroll-to-section"><a href="#services" id="second">خدماتنا</a></li>
+                      <li class="scroll-to-section"><a href="#courses" id="third" >الدورات</a></li>
+                      <li class="scroll-to-section"><a href="#team" id="fourth" >فريقنا</a></li>
+                      {% if user.is_authenticated %}
+                      <div id="clo">
+                          <a href="{% url 'core:dashboard' %}">
+                              <span class="material-symbols-outlined" style="font-size: 40px;">account_circle</span>
+                          </a>
+                      </div>
+                  {% else %}
+                      <li class="scroll-to-section"><a href="{% url 'core:log' %}">! سجل الان </a></li>
+                  {% endif %}
+                  </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-1"  style="background-image: url('{% static 'core/images/p2.jpg' %}')">
+              <div class="header-text">
+                <span class="category">دوراتنا</span> 
+                <h2> كل الدروس سهلة مع فريقنا</h2>
+                <p> هي مدرسة عبر الإنترنت ستساعدك على الدراسة بسهولة مع أفضل المعلمين وتصبح أحد أفضل الطلاب Schooline</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="#">طلب عرض توضيحي</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> ؟ Schooline ما هي</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item item-2" style="background-image: url('{% static 'core/images/p1.jpg' %}')">
+              <div class="header-text">
+                <span class="category">أفضل النتائج </span>
+                <h2>احصل على أفضل نتيجة من مجهودك</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus esse nulla, facere reiciendis natus ipsam. Iste eum fugiat nemo aliquam sequi.</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="#">طلب عرض توضيحي</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> ؟ Schooline ما هي</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item item-3" style="background-image: url('{% static 'core/images/p3.jpg' %}')">
+              <div class="header-text">
+                <span class="category">التعلم عن بعد</span>
+                <h2>التعلم عن بعد يساعدك على الحفاظ على وقتك</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod temporious incididunt ut labore et dolore magna aliqua suspendisse.</p>
+                <div class="buttons">
+                  <div class="main-button">
+                    <a href="#">طلب عرض توضيحي</a>
+                  </div>
+                  <div class="icon-button">
+                    <a href="#"><i class="fa fa-play"></i> ؟ Schooline ما هي</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="section about-us">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-1">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  من أين نبدأ ؟
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  كيف نعمل معا ؟
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                 هي الافضل ؟ Schooline لماذا
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  bla bla bla bla bla bla bla  <strong>YES</strong>bla bla bla bla bla bla bl abl ala alalalalala alamlas.
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  هل نحصل على أفضل دعم منكم ؟
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  اترك لنا <code> تعليقك او رأيك  </code> ان درست عندنا 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h6>معلومات عنا </h6>
+            <h2 id="meilleure-ecole">ما الذي يجعلنا أفضل مدرسة اونلاين ؟</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravid risus commodo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+ <!-- services -->
+    <div class="services section" id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6" >
+            <div class="service-item">
+              <div class="icon">
+                <img src="{% static 'core/assets/images/service-01.png'%}" alt="online degrees" />
+              </div>
+              <div class="main-content " id="change">
+                <h4>السنة الاولى ثانوي</h4>
+              
+                 <div class="module "> <a href="{% url 'core:courses' category='science' level=1 %}">جذع مشترك علوم تجريبية </a><br> </div>
+                
+                  <div class="module "><a href="{% url 'core:courses' category='arabic' level=1 %}">جذع مشترك  اداب و فلسفة</a></div>
+                
+                <div class="main-button"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <div class="icon">
+                <img src="{% static 'core/assets/images/service-02.png'%}" alt="short courses" />
+              </div>
+              <div class="main-content">
+                <h4>السنة الثانية ثانوي</h4>
+                <div class="module"> <a href="{% url 'core:courses' category='science' level=2 %}">شعبة علوم تجريبية</a></div>
+                <div class="module">  <a href="{% url 'core:courses' category='math' level=2 %}">شعبة رياضيات</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='tech' level=2 %}">شعبة تقني رياضي</a></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='comtability' level=2 %}">شعبة  تسيير و اقتصاد</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='arabic' level=2 %}">شعبة اداب و فلسفة</a></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='languages' level=2 %}">شعبة لغات</a></div>
+                <div class="main-button"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="service-item">
+              <div class="icon">
+                <img src="{% static 'core/assets/images/service-03.png'%}" alt="web experts" />
+              </div>
+              <div class="main-content">
+                <h4>السنة الثالثة ثانوي</h4>
+                
+                 <div class="module"> <a href="{% url 'core:courses' category='science' level=3 %}">شعبة علوم تجريبية</a></div>
+                <div class="module">  <a href="{% url 'core:courses' category='math' level=3 %}">شعبة رياضيات</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='tech' level=3 %}">شعبة تقني رياضي</a></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='comtability' level=3 %}">شعبة  تسيير و اقتصاد</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='arabic' level=3 %}">شعبة اداب و فلسفة</a></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='languages' level=3 %}">شعبة لغات</a></div>
+
+                <div class="main-button"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6" id="diff">
+            <div class="service-item">
+              <div class="icon">
+                <img src="{% static 'core/assets/images/service-03.png'%}" alt="web experts" />
+              </div>
+              <div class="main-content">
+                <h4>دورات متنوعة</h4>
+                  
+                 <div class="module"> <a href="{% url 'core:courses' category='others' level=0 %}">برمجة واب</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='others' level=0 %}"> امن سيبراني</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='others' level=0 %}"> اعلام الي</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='others' level=0 %}"> تصميم</a><br></div>
+                 <div class="module"> <a href="{% url 'core:courses' category='others' level=0 %}"> تعلم لغات</a></div>
+
+                
+                <div class="main-button"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <section class="section courses" id="courses" >
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h2>احدث الدورات </h2>
+          </div>
+        </div>
+      </div>
+      <ul class="event_filter">
+        <li>
+          <a class="is_active" data-category="all" href="#!" data-filter="*">عرض الكل</a>
+        </li>
+        <li>
+          <a href="#!" data-category="high" data-filter=".ثانوي">ثانوي</a>
+        </li>
+        <li>
+          <a href="#!" data-category="others" data-filter=".متنوع">متنوع</a>
+        </li>
+      </ul>
+      
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var listItems = document.querySelectorAll('.event_filter li a');
+
+    listItems.forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            event.preventDefault();
+            var current = document.querySelector('.is_active');
+            current.classList.remove('is_active');
+            item.classList.add('is_active');
+
+            var category = item.dataset.category;
+            var cards = document.querySelectorAll('.event_box .event_outer');
+
+            cards.forEach(function(card) {
+                // Split the classList of the card to check each class
+                var classes = card.className.split(' ');
+                // Check if any class in the card matches the category
+                if (category === 'all' || classes.some(c => c === category)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+        
+      </script>
+      
+      <div class="row event_box">
+        
+        {% for course in courses %}
+        <a href="{% url 'core:buy' course_name=course.name %}">
+        <div class="col-lg-4 col-md-6 align-self-center mb-30 event_outer col-md-6 {{ course.section }}">
+          <div class="events_item">
+            <div class="thumb">
+              <a href="#"><img src="{{ course.image.url }}" alt="" style="height: 250px; width: 100%;"></a>
+              <span class="category">{{ course.category }}</span>
+              <span class="price"><h6><em>{{ course.price }}</em></h6></span>
+            </div>
+            <div class="down-content">
+              <span class="author">{{ course.teacher.name }}</span>
+              <a href="{% url 'core:buy' course_name=course.name %}">
+                <h4>{{ course.name }}</h4></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <!-- <div class="main-button">
+        <a id="plus" href="teachers.html">...المزيد</a>
+      </div> -->
+    </div>
+  </section>
+
+  <div class="section fun-facts">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="wrapper">
+            <div class="row">
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="150" data-speed="1000"></h2>
+                   <p class="count-text ">تلاميذ مقتنعين</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="804" data-speed="1000"></h2>
+                  <p class="count-text ">ساعات من الدروس</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="50" data-speed="1000"></h2>
+                  <p class="count-text ">استاذا يعمل معنا</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-6">
+                <div class="counter end">
+                  <h2 class="timer count-title count-number" data-to="5" data-speed="1000"></h2>
+                  <p class="count-text ">سنوات من الخبرة</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="team section" id="team">
+    <div class="container">
+      <div class="section-heading">
+        <h2> افضل اساتذة الشهر </h2>
+      </div>
+      <div class="row">
+        {% for teacher in teachers %}
+        <div class="col-lg-3 col-md-6">
+          <a href="{% url 'core:teacher' teacher_name=teacher.name %}">
+            <div class="team-member">
+                <div class="main-content">
+                    <img src="{{ teacher.image.url }}" alt="">
+                    <span class="category"><p>{{ teacher.module }}</p></span>
+                    <h4>{{ teacher.name }}</h4>
+                    <ul class="social-icons">
+                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="main-button">
+      <a href="{% url 'core:Teachers' %}"> كل الاساتذة </a>
+    </div>
+    
+    </div>
+  </div> 
+
+  <div class="section testimonials">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div class="owl-carousel owl-testimonials">
+            <div class="item">
+              <p>لقد ساعدني هذا الموقع بشكل كبير طوال فترة دراستي, انا حقا شاكر لجميع الاساتذة الذين حرصوا على تدريسنا في الاوقات التي تناسبنا وبمبالغ معتبرة</p>
+              <div class="author">
+                <img src="{% static 'core/assets/images/testimonial-author.jpg'%}" alt="">
+                <span class="category">تلميذة</span>
+                <h4>نور الايمان</h4>
+              </div>
+            </div>
+            <div class="item">
+              <p>لقد ساعدني هذا الموقع بشكل كبير طوال فترة دراستي, انا حقا شاكر لجميع الاساتذة الذين حرصوا على تدريسنا في الاوقات التي تناسبنا وبمبالغ معتبرة</p>
+              <div class="author">
+                <img src="{% static 'core/assets/images/member-03.jpg'%}" alt="">
+                <span class="category">تلميذ</span>
+                <h4>حمزة المنور</h4>
+              </div>
+            </div>
+            <div class="item">
+              <p>لقد ساعدني هذا الموقع بشكل كبير طوال فترة دراستي, انا حقا شاكر لجميع الاساتذة الذين حرصوا على تدريسنا في الاوقات التي تناسبنا وبمبالغ معتبرة</p>
+              <div class="author">
+                <img src="{% static 'core/assets/images/testimonial-author.jpg'%}" alt="">
+                <span class="category">تلميذة</span>
+                <h4>شيماء المنور</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 align-self-center">
+          <div class="section-heading">
+            <h2>ارائكم <img src="{% static 'core/img/vue.png'%}" style="height: 60px; width: 60px;"> </h2>
+
+            <p>سيسعدنا مشاركتك لرايك حول موقعنا وذلك لتحسين ادائنا واداء طاقم العمل لمساعدتكم وتوفير كل ماتحتاجونه</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="contact-us section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6  align-self-center">
+          <div class="section-heading">
+            <h1>لا تتردد في التواصل معنا في أي وقت</h1>
+            <p>شكرا لاختيارك مدرستنا ، لا تنسى اخبار اصدقائك عنا </p>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="contact-us-content">
+            <form id="contact-form" action="{% url 'core:submit_feedback' %}" method="post">
+              {% csrf_token %}              <div class="row">
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="text" name="name" id="name" placeholder=".. الاسم الكامل" autocomplete="on" required>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder=".. البريد الالكتروني" required="">
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <input type="text" name="message" id="message" placeholder=".. رسالتك "></textarea>
+                  </fieldset>
+                </div>
+                <div class="col-lg-12">
+                  <fieldset>
+                    <button type="submit" id="form-submit" class="orange-button">ارسل رسالتك الان </button>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Copyright © 2024 Schooline School. All rights reserved. </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'core/vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'core/vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'core/assets/js/isotope.min.js'%}"></script>
+  <script src="{% static 'core/assets/js/owl-carousel.js'%}"></script>
+  <script src="{% static 'core/assets/js/counter.js'%}"></script>
+  <script src="{% static 'core/assets/js/custom.js'%}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'core/css/teachers.css'%}">
+  <link rel="stylesheet" href="{% static 'core/js/script.js'%}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+  <script src="{% static 'core/js/script.js'%}" defer></script>
+  <title>Teachers</title>
+</head>
+<body>
+    <header>
+    <div class="header_left">
+      <img src="{% static 'core/images/logo1.png'%}" class="logo">
+    </div>
+    <div class="header_search">
+      <form method="GET">
+        <input type="text" name="q" placeholder="Search" class="show">
+        <button type="submit" class="search_button"><i class="material-symbols-outlined">Search</i></button>
+    </form>
+    
+    </div> 
+    <div class="header_icons">
+
+     <div class="head">
+     <!-- <i class="material-symbols-outlined">account_circle</i>  -->
+     <a href="{% url 'core:main' %}">الرئيسية</a>        <i class="material-symbols-outlined">Home</i>  
+     <!-- <i class="material-symbols-outlined">search</i> -->
+     </div>
+
+     <div id="clo">
+      <a href="{% url 'core:dashboard' %}">
+        <span class="material-symbols-outlined">account_circle</span>
+      </a>
+    </div>
+
+   </div>
+  </header>
+
+  <div class="picture">
+    <img src="images/اساتذة (4).png"  alt="">
+  </div>
+
+   <div class="wrapper">
+    <div class="icon"><i id="left" class="fa-solid fa-angle-left"></i></div>
+    <ul class="tabs-box">
+      <li class="tab" data-category="his-geo">تاريخ و جغرافيا</li>
+      <li class="tab active" data-category="math">رياضيات</li>
+      <li class="tab" data-category="physics">علوم فيزيائية</li>
+      <li class="tab" data-category="science">علوم طبيعية</li>
+      <li class="tab" data-category="arabic">لغة عربية</li>
+      <li class="tab" data-category="french">لغة فرنسية</li>
+      <li class="tab" data-category="elec-eng">هندسة كهربائية</li>
+      <li class="tab" data-category="english">لغة انجليزية</li>
+      <li class="tab" data-category="philosophy">فلسفة</li>
+      <li class="tab" data-category="gestion">اقتصاد</li>
+      <li class="tab" data-category="mec-eng">هندسة ميكانيكية</li>
+      <li class="tab" data-category="civ-eng">هندسة مدنية</li>
+      <li class="tab" data-category="islamic-science">علوم اسلامية</li>
+      <li class="tab" data-category="pro-eng">هندسة طرائق</li>
+      <li class="tab" data-category="comtability">التسيير المحاسبي</li>
+      <li class="tab" data-category="security">أمن سيبيراني</li>
+      <li class="tab" data-category="design">تصميم</li>
+    </ul>
+    <div class="icon"><i id="right" class="fa-solid fa-angle-right"></i></div>
+  </div>
+
+  <div>
+
+  </div>
+  
+  <!-- videos starts -->
+  <div class="teachers_section">
+    <div class="teachers">
+
+      {% for teacher in teachers %}
+      <div class="teacher {{teacher.module}}">
+        <a href="{% url 'core:teacher' teacher_name=teacher.name %}">
+            <div class="events_item">
+                <div class="thumb">
+                    <img src="{{ teacher.image.url }}" alt="">
+                </div>
+                <div class="down-content">
+                    <span class="author">{{ teacher.name }}</span>
+                </div>
+            </div>
+        </a>
+    </div>
+{% endfor %}
+
+    </div>
+ </div>
+<!-- videos ends -->
+
+
+</body>
+</html>

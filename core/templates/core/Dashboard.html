@@ -1,0 +1,482 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard</title>
+    <link
+      rel="shortcut icon"
+      href="{% static 'core/img/logo2.png'%}"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="{% static '/core/css/Dashboard.css'%}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  </head>
+
+  <body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a id="Logo" href="#">
+              <span class="icon">
+                <img src="{% static 'core/img/logo2.png'%}" alt="" />
+              </span>
+              <span id="school" class="title">SchooLine</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link" data-target="profile">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="title">حساب</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link" data-target="messages">
+              <span class="icon">
+                <ion-icon name="chatbubble-outline"></ion-icon>
+              </span>
+              <span class="title">رسائل</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link" data-target="settings">
+              <span class="icon">
+                <ion-icon name="settings-outline"></ion-icon>
+              </span>
+              <span class="title">اعدادات</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="nav-link" data-target="sign-out">
+              <span class="icon">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </span>
+              <span class="title">تسجيل الخروج</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
+      <div class="main">
+        <div class="topbar">
+          <div class="toggle">
+            <ion-icon name="menu-outline"></ion-icon>
+          </div>
+
+          <div class="search">
+            <label>
+              <input type="text" placeholder="... ابحث هنا " />
+              <ion-icon name="search-outline"></ion-icon>
+            </label>
+          </div>
+
+          <div class="head">
+            <!-- <i class="material-symbols-outlined">account_circle</i>  -->
+            <a href="{% url 'core:main' %}">       <i class="material-symbols-outlined">Home</i>  
+            </a> </div>
+        </div>
+
+        <!-- ================ Content Sections ================= -->
+        <div class="content">
+          <div id="profile" class="section">
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+            
+
+              <div class="card">
+                <div>
+                  <div class="numbers">{{ nbr_courses }}</div>
+                  <div class="cardName">الدورات</div>
+                </div>
+
+                <div class="iconBx">
+                  <ion-icon name="cart-outline"></ion-icon>
+                </div>
+              </div>
+              <div class="card">
+                <div>
+                  <div class="numbers">{{ user.credit}} <!-- Da--> </div>
+                  <div class="cardName">الرصيد</div>
+                </div>
+
+                <div class="iconBx">
+                  <ion-icon name="cash-outline"></ion-icon>
+                </div>
+              </div>
+            </div>
+
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+              <!-- ================= Teachers ================ -->
+              <div class="recentTeachers">
+                <div class="cardHeader " >
+                  <h2 >الاساتذة</h2>
+                </div>
+
+                <table>
+                  {%for x in teachers%}
+                  <tr>
+                    <td width="60px">
+                      <div class="imgBx">
+                        <img src="{%if x.teacher.image %}{{ x.teacher.image.url }}{%else%}#{%endif%}" alt="" />
+                      </div>
+                    </td>
+                    <td><a href="{% url 'core:teacher' teacher_name=x.teacher.name %}">
+                      <h4>
+                        {{x.teacher.name}} <br />
+                        <span>{{x.teacher.module}}</span>
+                      </h4></a>
+                    </td>
+                  </tr>
+                  {% empty %} <h2 style="color:#0075ff;">لا تتابع اي استاذ</h2> {%endfor%}
+                </table>
+              </div>
+              <div class="recentCourses">
+                <!-- <div class="cardHeader">
+                  <h2>Recent Courses</h2>
+                  <a href="#" class="btn">View All</a>
+                </div> -->
+
+                <table>
+                  <thead>
+                    <tr>
+                      <td>الحالة</td>
+                      <td>الاستاذ</td>
+                      <td>الثمن</td>
+                      <td>اسم الدورة</td>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    
+                    {%for x in courses%}
+                    
+                    <tr>
+                      <td><span class="status {{x.status}}">{{x.status}}</span></td>
+                      <td>{{x.course.teacher.name}}</td>
+                      <td>{{x.course.price}}</td>
+                      <td>{{x.course.name}}</td>
+                    </tr>
+                     {%endfor%}
+                    
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- Content for the Profile section goes here -->
+          </div>
+
+          <!-- MESSAGES ICI -->
+          <div id="messages" class="section">
+            <div class="container">
+              <!-- msg-header section starts -->
+              <div class="msg-header">
+                <div class="container1">
+                  <img src="./assets/imgs/customer02.jpg" class="msgimg" />
+                  <div class="active">
+                    <br />
+                    <p>فريق المساعدة</p>
+                  </div>
+                </div>
+              </div>
+              <!-- msg-header section ends -->
+
+              <!-- Chat inbox  -->
+              <div class="chat-page">
+                <div class="msg-inbox">
+                  <div class="chats">
+                    <!-- Message container -->
+                    <div class="msg-page">
+                      <!-- Incoming messages -->
+
+                      <div class="received-chats">
+                        <div class="received-chats-img">
+                          <img src="./assets/imgs/customer02.jpg" />
+                        </div>
+                        <div class="received-msg">
+                          <div class="received-msg-inbox">
+                            <p>
+                              Hi !! This is message from Riya . Lorem ipsum,
+                              dolor sit amet consectetur adipisicing elit. Non
+                              quas nemo eum, earum sunt, nobis similique
+                              quisquam eveniet pariatur commodi modi
+                              voluptatibus iusto omnis harum illum iste
+                              distinctio expedita illo!
+                            </p>
+                            <span class="time">18:06 PM | July 24</span>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Outgoing messages -->
+                      <div class="outgoing-chats">
+                        <div class="outgoing-chats-img">
+                          <img src="./assets/imgs/customer01.jpg" />
+                        </div>
+                        <div class="outgoing-msg">
+                          <div class="outgoing-chats-msg">
+                            <p class="multi-msg">
+                              Hi riya , Lorem ipsum dolor sit amet consectetur
+                              adipisicing elit. Illo nobis deleniti earum magni
+                              recusandae assumenda.
+                            </p>
+                            <p class="multi-msg">
+                              Lorem ipsum dolor sit amet consectetur.
+                            </p>
+
+                            <span class="time">18:30 PM | July 24</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="received-chats">
+                        <div class="received-chats-img">
+                          <img src="./assets/imgs/customer02.jpg" />
+                        </div>
+                        <div class="received-msg">
+                          <div class="received-msg-inbox">
+                            <p class="single-msg">
+                              Hi !! This is message from John Lewis. Lorem
+                              ipsum, dolor sit amet consectetur adipisicing
+                              elit. iste distinctio expedita illo!
+                            </p>
+                            <span class="time">18:31 PM | July 24</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="outgoing-chats">
+                        <div class="outgoing-chats-img">
+                          <img src="./assets/imgs/customer01.jpg" />
+                        </div>
+                        <div class="outgoing-msg">
+                          <div class="outgoing-chats-msg">
+                            <p>
+                              Lorem ipsum dolor sit amet consectetur adipisicing
+                              elit. Velit, sequi.
+                            </p>
+
+                            <span class="time">18:34 PM | July 24</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- msg-bottom section -->
+                  <div class="msg-bottom">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="message-input"
+                        placeholder="... اكتب هنا"
+                      />
+
+                      <label for="image-upload" class="input-group-text">
+                        <i class="bi bi-image"></i>
+                      </label>
+                      <input
+                        type="file"
+                        id="image-upload"
+                        style="display: none"
+                        accept="image/*"
+                      />
+
+                      <span class="input-group-text send-icon" id="send-button">
+                        <i class="bi bi-send"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings -->
+
+          <div id="settings" class="section">
+            <div class="settings-page m-20 d-grid gap-20">
+              <!-- Start Settings Box -->
+              <div class="p-20 bg-white rad-10">
+                <h2 class="mt-0 mb-10">معلومات عامة</h2>
+                <p class="mt-0 mb-20 c-grey fs-15">
+                 معلومات عامة حول حسابك
+                </p>
+                <form method="post" action="{% url 'core:change_name'%}">
+                  {% csrf_token %}
+                    <div class="mb-15">
+                      <label class="fs-14 c-grey d-block mb-10" for="first"
+                        >اسم المستخدم</label
+                      >
+                      <input
+                        class="b-none border-ccc p-10 rad-6 d-block w-full"
+                        name="username"
+                        type="text"
+                        id="first"
+                        placeholder="Name"
+                        value="{{user.username}}"
+                      />
+                      <input class="c-blue" type="submit" value="Change" >
+                    </div>
+                </form>   
+                <form method="post" action="{% url 'core:change_email'%}">
+                  {% csrf_token %}
+                    <div>
+                      <label class="fs-14 c-grey d-block mb-5" for="email"
+                        >Email</label
+                      >
+                      <input
+                        class="email b-none border-ccc p-10 rad-6 w-full mr-10"
+                        name="email"
+                        id="email"
+                        type="email"
+                        value="{{user.email}}"
+                      />
+                      <input class="c-blue" type="submit" value="Change" >
+                    </div>
+                </form>
+                
+              </div>
+              <!-- End Settings Box -->
+              <!-- Start Settings Box -->
+              <div class="p-20 bg-white rad-10">
+                <h2 class="mt-0 mb-10">Security Info</h2>
+                <p class="mt-0 mb-20 c-grey fs-15">
+                  Security Information About Your Account
+                </p>
+                <div class="sec-box mb-15 between-flex">
+
+                  <form method="post" action="{% url 'core:change_password'%}">
+                    {% csrf_token %}
+                      <div>
+                        <span>Password</span>
+                                <input
+                                  class="email b-none border-ccc p-10 rad-6 w-full mr-10"
+                                  name="password"
+                                  type="password"
+                                  placeholder="new Password"
+                                />
+                                
+                        <p class="c-grey mt-5 mb-0 fs-13">
+                          Last Change On {{user.Password_last_Change}}
+                        </p>
+                      </div>
+                      <input class="button bg-blue c-white btn-shape" type="submit" value="Change" >
+                  </form>
+                </div>
+                <div class="sec-box mb-15 between-flex">
+                  <div>
+                    <span>Two-Factor Authentication</span>
+                    <p class="c-grey mt-5 mb-0 fs-13">
+                      Enable/Disable The Feature
+                    </p>
+                  </div>
+                  <label>
+                    <input class="toggle-checkbox" type="checkbox" checked />
+                    <div class="toggle-switch"></div>
+                  </label>
+                </div>
+                <div class="sec-box between-flex">
+                  <div>
+                    <span>Devices</span>
+                    <p class="c-grey mt-5 mb-0 fs-13">
+                      Check The Login Devices List
+                    </p>
+                  </div>
+                  <a class="bg-eee c-black btn-shape" href="#">Devices</a>
+                </div>
+              </div>
+              <!-- End Settings Box -->
+              <!-- Start Settings Box -->
+              <div class="social-boxes p-20 bg-white rad-10">
+                <h2 class="mt-0 mb-10">Social Info</h2>
+                <p class="mt-0 mb-20 c-grey fs-15">Social Media Information</p>
+                <div class="d-flex align-center mb-15">
+                  <i class="fab fa-twitter center-flex c-grey"></i>
+                  <input
+                    class="w-full"
+                    type="text"
+                    placeholder="Twitter Username"
+                  />
+                </div>
+                <div class="d-flex align-center mb-15">
+                  <i class="fab fa-facebook-f center-flex c-grey"></i>
+                  <input
+                    class="w-full"
+                    type="text"
+                    placeholder="Facebook Username"
+                  />
+                </div>
+                <div class="d-flex align-center mb-15">
+                  <i class="fab fa-linkedin center-flex c-grey"></i>
+                  <input
+                    class="w-full"
+                    type="text"
+                    placeholder="LinkedIn Username"
+                  />
+                </div>
+                <div class="d-flex align-center">
+                  <i class="fab fa-youtube center-flex c-grey"></i>
+                  <input
+                    class="w-full"
+                    type="text"
+                    placeholder="YouTube Username"
+                  />
+                </div>
+              </div>
+              <!-- End Settings Box -->
+            </div>
+          </div>
+
+          <!-- Logout -->
+
+          <div id="sign-out" class="section">
+            <div class="box">
+              <h1>هل أنت متأكد ؟</h1>
+              <p>
+                هل تريد حقا تسجيل الخروج من هذا الحساب ؟
+              </p>
+              <br />
+              <br />
+              <div class="buttons">
+                <a href="#" class="nav-link" data-target="profile">رجوع </a>
+                <a class="confirm" href="{% url 'core:logout'%}">تسجيل الخروج</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'core/js/dashboard.js'%}"></script>
+    <!-- ====== ionicons ======= -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
