@@ -190,146 +190,154 @@
           <!-- MESSAGES ICI -->
           <div id="messages" class="section">
               <div class="message-container">
-              <div class="chat-list">
-                <div class="chat-list-header">
-                    <input type="text" placeholder="Search Messenger">
-                </div>
-              <!-- Hna The Reusable component ta3 chat_item : Ro7 l function ta3 this route and gave it a parameter of a list of chats dict then iterate it here-->
-               <!-- the dict : {"initial":value , "username":value,"message":value,"message_time":asStringValue , "is_unread":booleanValue} -->
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              {% include "core/chat_item.html" with user_initial="U" user_name="User 1" user_message="bnjr" message_time="10h" is_unread=1 %}
-              
-            </div>
-            <div class="container">
-              <!-- msg-header section starts -->
-              <div class="msg-header">
-                <div class="container1">
-                  <img src="./assets/imgs/customer02.jpg" class="msgimg" />
-                  <div class="active">
-                    <br />
-                    <p>فريق المساعدة</p>
-                  </div>
-                </div>
-              </div>
-              <!-- msg-header section ends -->
-
-              <!-- Chat inbox  -->
-              <div class="chat-page">
-                <div class="msg-inbox">
-                  <div class="chats">
-                    <!-- Message container -->
-                    <div class="msg-page">
-                      <!-- Incoming messages -->
-
-                      <div class="received-chats">
-                        <div class="received-chats-img">
-                          <img src="./assets/imgs/customer02.jpg" />
+                      <!-- Admin/TechTeam View -->
+                      {% if user.is_techteam %}
+                      <div class="chat-list">
+                        <div class="chat-list-header">
+                          <input type="text" placeholder="Search Messenger">
                         </div>
-                        <div class="received-msg">
-                          <div class="received-msg-inbox">
-                            <p>
-                              Hi !! This is message from Riya . Lorem ipsum,
-                              dolor sit amet consectetur adipisicing elit. Non
-                              quas nemo eum, earum sunt, nobis similique
-                              quisquam eveniet pariatur commodi modi
-                              voluptatibus iusto omnis harum illum iste
-                              distinctio expedita illo!
-                            </p>
-                            <span class="time">18:06 PM | July 24</span>
+                        
+                    
+                        <!-- Loop through chat threads -->
+                        {% for chat_thread in chat_threads %}
+                        <div class="chat-item" data-thread-id="{{ chat_thread.thread.id }}" onclick="showMessages('{{ chat_thread.thread.id }}')">
+                          <div class="chat-avatar">{{ chat_thread.thread.student.username|slice:":1"|upper }}</div>
+                          <div class="chat-details">
+                              <div class="chat-name">{{ chat_thread.thread.student.username }}</div>
+                              <div class="chat-message">{{ chat_thread.last_message.content }}</div>
+                          </div>
+                          <div class="chat-time">{{ chat_thread.last_message.timestamp|date:"H:i" }}</div>
+                          {% if not chat_thread.last_message.is_read %}
+                          <div class="chat-unread"></div>
+                          {% endif %}
+                      </div>
+                      {% endfor %}
+                                  </div>
+                      {% endif %}
+                    
+                      <!-- Chat Message Section -->
+                      <div class="container">
+                        <!-- Chat Header -->
+                        <div class="msg-header">
+                          <div class="container1">
+                            <img src="{% static 'imgs/customer02.jpg' %}" class="msgimg" />
+                            <div class="active">
+                              <br />
+                              <p>
+                                {% if user.is_techteam %}
+                                  {{ chat_thread.thread.student.username }}
+                                {% else %}
+                                  Help Team
+                                {% endif %}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                    
+                        <!-- Chat Inbox -->
+                        <div class="chat-page">
+                          <div class="msg-inbox">
+                            <div class="chats">
+                              <!-- Message Container -->
+                              <div class="msg-page" id="messages-thread-{{ chat_thread.thread.id }}" style="display: none;">
+                                <!-- Loop through all messages for the thread -->
+                                {% for message in all_messages %}
+                                {% if message.thread == chat_thread.thread %}
+                                {% if message.sender == user %}
+                                <!-- Outgoing Message -->
+                                <div class="outgoing-chats">
+                                    <div class="outgoing-chats-img">
+                                        <img src="{% static 'imgs/customer01.jpg' %}" />
+                                    </div>
+                                    <div class="outgoing-msg">
+                                        <div class="outgoing-chats-msg">
+                                            <p>{{ message.content }}</p>
+                                            <span class="time">{{ message.timestamp|date:"H:i A" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <!-- Incoming Message -->
+                                <div class="received-chats">
+                                    <div class="received-chats-img">
+                                        <img src="{% static 'imgs/customer02.jpg' %}" />
+                                    </div>
+                                    <div class="received-msg">
+                                        <div class="received-msg-inbox">
+                                            <p>{{ message.content }}</p>
+                                            <span class="time">{{ message.timestamp|date:"H:i A" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            <script>
+                              function showMessages(threadId) {
+                            // Remove active class from all threads
+                            const threads = document.querySelectorAll('.chat-item');
+                            threads.forEach(thread => {
+                                thread.classList.remove('active-thread');
+                            });
+          
+                            // Add active class to the clicked thread
+                            const activeThread = document.querySelector(`[data-thread-id="${threadId}"]`);
+                            if (activeThread) {
+                                activeThread.classList.add('active-thread');
+                            }
+          
+                            // Hide all message containers
+                            const messageContainers = document.querySelectorAll('.msg-page');
+                            messageContainers.forEach(container => {
+                                container.style.display = 'none';
+                            });
+          
+                            // Show the selected thread's messages
+                            const selectedMessages = document.getElementById(`messages-thread-${threadId}`);
+                            if (selectedMessages) {
+                                selectedMessages.style.display = 'block';
+                            }
+                        }
+                              </script>
+                            </div>
+                    
+                            <!-- Message Input Section -->
+                            <div class="msg-bottom">
+                              <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                  <input
+                                    type="text"
+                                    class="form-control"
+                                    id="message-input"
+                                    name="message"
+                                    placeholder="... اكتب هنا"
+                                    required
+                                  />
+                    
+                                  <label for="image-upload" class="input-group-text">
+                                    <i class="bi bi-image"></i>
+                                  </label>
+                                  <input
+                                    type="file"
+                                    id="image-upload"
+                                    name="attachment"
+                                    style="display: none"
+                                    accept="image/*"
+                                  />
+                    
+                                  <button type="submit" class="input-group-text send-icon" id="send-button">
+                                    <i class="bi bi-send"></i>
+                                  </button>
+                                </div>
+                              </form>
+                            </div>
                           </div>
                         </div>
                       </div>
-                      <!-- Outgoing messages -->
-                      <div class="outgoing-chats">
-                        <div class="outgoing-chats-img">
-                          <img src="./assets/imgs/customer01.jpg" />
-                        </div>
-                        <div class="outgoing-msg">
-                          <div class="outgoing-chats-msg">
-                            <p class="multi-msg">
-                              Hi riya , Lorem ipsum dolor sit amet consectetur
-                              adipisicing elit. Illo nobis deleniti earum magni
-                              recusandae assumenda.
-                            </p>
-                            <p class="multi-msg">
-                              Lorem ipsum dolor sit amet consectetur.
-                            </p>
-
-                            <span class="time">18:30 PM | July 24</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="received-chats">
-                        <div class="received-chats-img">
-                          <img src="./assets/imgs/customer02.jpg" />
-                        </div>
-                        <div class="received-msg">
-                          <div class="received-msg-inbox">
-                            <p class="single-msg">
-                              Hi !! This is message from John Lewis. Lorem
-                              ipsum, dolor sit amet consectetur adipisicing
-                              elit. iste distinctio expedita illo!
-                            </p>
-                            <span class="time">18:31 PM | July 24</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="outgoing-chats">
-                        <div class="outgoing-chats-img">
-                          <img src="./assets/imgs/customer01.jpg" />
-                        </div>
-                        <div class="outgoing-msg">
-                          <div class="outgoing-chats-msg">
-                            <p>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Velit, sequi.
-                            </p>
-
-                            <span class="time">18:34 PM | July 24</span>
-                          </div>
-                        </div>
                       </div>
                     </div>
-                  </div>
-
-                  <!-- msg-bottom section -->
-                  <div class="msg-bottom">
-                    <div class="input-group">
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="message-input"
-                        placeholder="... اكتب هنا"
-                      />
-
-                      <label for="image-upload" class="input-group-text">
-                        <i class="bi bi-image"></i>
-                      </label>
-                      <input
-                        type="file"
-                        id="image-upload"
-                        style="display: none"
-                        accept="image/*"
-                      />
-
-                      <span class="input-group-text send-icon" id="send-button">
-                        <i class="bi bi-send"></i>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-          </div>
 
           <!-- Settings -->
 

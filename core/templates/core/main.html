@@ -1,0 +1,645 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SCHOOLINE - أفضل برنامج للتسجيل للتبادل</title>
+  <meta name="title" content="EduWeb - أفضل برنامج للتسجيل للتبادل">
+  <meta name="description" content="هذا قالب HTML تعليمي تم إنشاؤه بواسطة codewithsadee">
+
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{% static 'core/css/main.css'%}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="{% static 'core/images/hero-bg.svg' %}">
+  <link rel="preload" as="image" href="{% static 'core/images/hero-banner-1.jpg' %}">
+  <link rel="preload" as="image" href="{% static 'core/images/hero-banner-2.jpg' %}">
+  <link rel="preload" as="image" href="{% static 'core/images/hero-shape-1.svg' %}">
+  <link rel="preload" as="image" href="{% static 'core/images/hero-shape-2.png' %}">
+</head>
+
+<body id="top">
+
+  <header class="header" data-header>
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="{% static 'core/images/logo1.png' %}" width="100" height="100" alt="شعار EduWeb">
+      </a>
+      <nav class="navbar" data-navbar>
+        <div class="wrapper">
+          <a href="#" class="logo">
+            <img src="{% static 'core/images/logo.svg" width="162" height="50" alt="شعار EduWeb">
+          </a>
+          <button class="nav-close-btn" aria-label="إغلاق القائمة" data-nav-toggler>
+            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+          </button>
+        </div>
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="#home" class="navbar-link" data-nav-link>الرئيسية</a>
+          </li>
+          <li class="navbar-item">
+            <a href="#about" class="navbar-link" data-nav-link>حول</a>
+          </li>
+          <li class="navbar-item">
+            <a href="#courses" class="navbar-link" data-nav-link>الدورات</a>
+          </li>
+          <li class="navbar-item">
+            <a href="#blog" class="navbar-link" data-nav-link>مدونة</a>
+          </li>
+          <li class="navbar-item">
+            <a href="#" class="navbar-link" data-nav-link>تواصل معنا</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-actions">
+        {% if user.is_authenticated %}
+          <!-- Show profile icon -->
+          <a href="/dashboard" class="btn has-before">
+            <span class="span">الملف الشخصي</span>
+            <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
+          </a>
+        {% else %}
+          <!-- Show login button -->
+          <a href="/login" class="btn has-before">
+            <span class="span">سجل الان</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        {% endif %}
+        <button class="header-action-btn" aria-label="فتح القائمة" data-nav-toggler>
+          <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section class="section hero has-bg-image" id="home" aria-label="home" style="background-image: url('{% static 'core/images/hero-bg.svg')">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="h1 section-title">
+              أفضل برنامج  <span class="span">سجل</span>من اجل التغيير 
+            </h1>
+            <p class="hero-text">
+              لا يوجد شيء أفضل من هذا البرنامج التعليمي.
+            </p>
+            <a href="#" class="btn has-before">
+              <span class="span">البحث عن الدورات</span>
+              <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </div>
+          <figure class="hero-banner">
+            <div class="img-holder one" style="--width: 270; --height: 300;">
+              <img src="{% static 'core/images/hero-banner-1.jpg' %}" width="270" height="300" alt="شعار بطل" class="img-cover">
+            </div>
+            <div class="img-holder two" style="--width: 240; --height: 370;">
+              <img src="{% static 'core/images/hero-banner-2.jpg' %}" width="240" height="370" alt="شعار بطل" class="img-cover">
+            </div>
+            <img src="{% static 'core/images/hero-shape-1.svg' %}" width="380" height="190" alt="" class="shape hero-shape-1">
+            <img src="{% static 'core/images/hero-shape-2.png' %}" width="622" height="551" alt="" class="shape hero-shape-2">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section category" aria-label="category">
+        <div class="container">
+          <h2 class="h2 section-title">
+            <span class="span"> المستويات</span> 
+          </h2>
+          <p class="section-text">
+            
+          </p>
+          <ul class="grid-list">
+            <li class="card-container">
+              <div class="card">
+                <div class="card-side category-card" style="--color: 170, 75%, 41%">
+                  <div class="card-icon">
+                    <img src="{% static 'core/images/category-1.svg' %}" width="40" height="40" loading="lazy" alt="برامج الشهادات عبر الإنترنت" class="img">
+                  </div>
+                  <h3 class="h3">
+                    <a href="#" class="card-title">شعبة لغات و اداب و فلسفة </a>
+                  </h3>
+                  <p class="card-text">
+                    تعلم مهارات جديدة من خلال الدورات.
+                  </p>
+                  <span class="card-badge">7 دورات</span>
+                </div>
+                <div class="card-side category-card-back" id="ccb1">
+                  <div class="card1">
+                    <div class="card1-content">
+                      <div class="links1">
+                        <a href="/docs" class="link1">
+                          <div class="link1-header">
+                            <h2> السنةالأولى ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>اختيار واحد</p>
+                        </a>
+                        <div href="/components" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثانية ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>اختياران</p>
+                          <div class="extendedLinkContainer">
+                            <a href="" class="extendedLink">شعبة لغات</a>
+                            <a href="" class="extendedLink">شعبة آداب و فلسفة</a>
+                          </div>
+                        </div>
+                        <div href="/examples" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثالثة ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>ثلاثة اختيارات</p>
+                          <div class="extendedLinkContainer">
+                            <a href="" class="extendedLink">شعبة لغات</a>
+                            <a href="" class="extendedLink">شعبة آداب و فلسفة</a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="card-container">
+              <div class="card">
+                <div class="card-side category-card" style="--color: 351, 83%, 61%">
+                  <div class="card-icon">
+                    <img src="{% static 'core/images/category-2.svg' %}" width="40" height="40" loading="lazy" alt="برامج غير معتمدة" class="img">
+                  </div>
+                  <h3 class="h3">
+                    <a href="#" class="card-title"> شعبة تسيير و اقتصاد</a>
+                  </h3>
+                  <p class="card-text">
+                    تعلم المهارات دون الحصول على شهادة.
+                  </p>
+                  <span class="card-badge">4 دورات</span>
+                </div>
+                <div class="card-side category-card-back" id="ccb2">
+                  <div class="card1">
+                    <div class="card1-content">
+                      <div class="links1">
+                        <a href="/components" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثانية ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>اختيار واحد</p>
+                        </a>
+                        <a href="/examples" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثالثة ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>اختيار واحد</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="card-container">
+              <div class="card">
+                <div class="card-side category-card" style="--color: 229, 75%, 58%">
+                  <div class="card-icon">
+                    <img src="{% static 'core/images/category-3.svg' %}" width="40" height="40" loading="lazy" alt="برامج خارج الحرم الجامعي" class="img">
+                  </div>
+                  <h3 class="h3">
+                    <a href="#" class="card-title"> شعبة رياضي و تقني رياضي</a>
+                  </h3>
+                  <p class="card-text">
+                    تعلم في مواقع مختلفة.
+                  </p>
+                  <span class="card-badge">8 دورات</span>
+                </div>
+                <div class="card-side category-card-back" id="ccb3">
+                  <div class="card1">
+                    <div class="card1-content">
+                      <div class="links1">
+                        <div href="/components" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثانية ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>اختياران</p>
+                          <div class="extendedLinkContainer">
+                            <a href="" class="extendedLink">شعبة لغات</a>
+                            <a href="" class="extendedLink">شعبة آداب و فلسفة</a>
+                          </div>
+                        </div>
+                        <div href="/examples" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثالثة ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>ثلاثة اختيارات</p>
+                          <div class="extendedLinkContainer">
+                            <a href="" class="extendedLink">شعبة لغات</a>
+                            <a href="" class="extendedLink">شعبة آداب و فلسفة</a>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li class="card-container">
+              <div class="card">
+                <div class="card-side category-card" style="--color: 42, 94%, 55%">
+                  <div class="card-icon">
+                    <img src="{% static 'core/images/category-4.svg' %}" width="40" height="40" loading="lazy" alt="برامج هجينة" class="img">
+                  </div>
+                  <h3 class="h3">
+                    <a href="#" class="card-title"> شعبة علوم الطبيعة والحياة</a>
+                  </h3>
+                  <p class="card-text">
+                    اجمع بين التعلم عن بُعد والتفاعل المباشر.
+                  </p>
+                  <span class="card-badge">8 دورات</span>
+                </div>
+                <div class="card-side category-card-back" id="ccb4">
+                  <div class="card1">
+                    <div class="card1-content">
+                      <div class="links1">
+                        <a href="/docs" class="link1">
+                          <div class="link1-header">
+                            <h2> السنةالأولى ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>اختيار واحد</p>
+                        </a>
+                        <a href="/components" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثانية ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>اختياران</p>
+                        </a>
+                        <a href="/examples" class="link1">
+                          <div class="link1-header">
+                            <h2>السنةالثالثة ثانوي</h2>
+                            <span class="chevron">&#x276E;</span>
+                          </div>
+                          <p>ثلاثة اختيارات</p>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section about" id="about" aria-label="about">
+        <div class="container">
+          <figure class="about-banner">
+            <div class="img-holder" style="--width: 520; --height: 370;">
+              <img src="{% static 'core/images/about-banner.jpg' %}" width="520" height="370" loading="lazy" alt="بانر عن" class="img-cover">
+            </div>
+            <img src="{% static 'core/images/about-shape-1.svg' %}" width="360" height="420" loading="lazy" alt="" class="shape about-shape-1">
+            <img src="{% static 'core/images/about-shape-2.svg' %}" width="371" height="220" loading="lazy" alt="" class="shape about-shape-2">
+            <img src="{% static 'core/images/about-shape-3.png' %}" width="722" height="528" loading="lazy" alt="" class="shape about-shape-3">
+          </figure>
+          <div class="about-content">
+            <p class="section-subtitle">معلومات عنا</p>
+            <h2 class="h2 section-title">
+              أكثر من 10 سنوات في <span class="span">التعلم عن بُعد</span> لتطوير المهارات
+            </h2>
+            <p class="section-text">
+              نحن نقدم التعليم بجودة عالية لسنوات عديدة.
+            </p>
+            <ul class="about-list">
+              <li class="about-item">
+                <ion-icon name="checkmark-done-outline" aria-hidden="true"></ion-icon>
+                <span class="span">مدربون خبراء</span>
+              </li>
+              <li class="about-item">
+                <ion-icon name="checkmark-done-outline" aria-hidden="true"></ion-icon>
+                <span class="span">تعليم عن بُعد</span>
+              </li>
+              <li class="about-item">
+                <ion-icon name="checkmark-done-outline" aria-hidden="true"></ion-icon>
+                <span class="span">وصول مدى الحياة</span>
+              </li>
+            </ul>
+            <img src="{% static 'core/images/about-shape-4.svg' %}" width="100" height="100" loading="lazy" alt="" class="shape about-shape-4">
+          </div>
+        </div>
+      </section>
+
+      <section class="section course" id="courses" aria-label="course">
+        <div class="container">
+          <p class="section-subtitle">الدورات الشعبية</p>
+          <h2 class="h2 section-title">اختر دورة للبدء</h2>
+          <ul class="grid-list">
+            <li>
+              <div class="course-card">
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="{% static 'core/images/course-1.jpg' %}" width="370" height="220" loading="lazy" alt="إنشاء مواقع ويب واقعية مع HTML و CSS" class="img-cover">
+                </figure>
+                <div class="abs-badge">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                  <span class="span">3 أسابيع</span>
+                </div>
+                <div class="card-content">
+                  <span class="badge">مبتدئ</span>
+                  <h3 class="h3">
+                    <a href="#" class="card-title">دورة شاملة في مادة الرياضيات باكالوريا 2025</a>
+                  </h3>
+                  <div class="wrapper">
+                    <div class="rating-wrapper">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+                    <p class="rating-text">(5.0/5 تقييم)</p>
+                  </div>
+                  <data class="price" value="29">5000 DA</data>
+                  <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                      <ion-icon name="library-outline" aria-hidden="true"></ion-icon>
+                      <span class="span">8 دروس</span>
+                    </li>
+                    <li class="card-meta-item">
+                      <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+                      <span class="span">20 طالب</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="course-card">
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="{% static 'core/images/course-2.jpg' %}" width="370" height="220" loading="lazy" alt="دورة برمجة Java للمطورين" class="img-cover">
+                </figure>
+                <div class="abs-badge">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                  <span class="span">8 أسابيع</span>
+                </div>
+                <div class="card-content">
+                  <span class="badge">متقدم</span>
+                  <h3 class="h3">
+                    <a href="#" class="card-title">دورة شاملة في مادة علوم الطبيعةو الحياة باكالوريا 2025</a>
+                  </h3>
+                  <div class="wrapper">
+                    <div class="rating-wrapper">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+                    <p class="rating-text">(4.5 /5 تقييم)</p>
+                  </div>
+                  <data class="price" value="49">2000 DA</data>
+                  <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                      <ion-icon name="library-outline" aria-hidden="true"></ion-icon>
+                      <span class="span">15 درس</span>
+                    </li>
+                    <li class="card-meta-item">
+                      <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+                      <span class="span">35 طالب</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="course-card">
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="{% static 'core/images/course-3.jpg' %}" width="370" height="220" loading="lazy" alt="الدورة الكاملة لـ Camtasia لصانعي المحتوى" class="img-cover">
+                </figure>
+                <div class="abs-badge">
+                  <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                  <span class="span">3 أسابيع</span>
+                </div>
+                <div class="card-content">
+                  <span class="badge">متوسط</span>
+                  <h3 class="h3">
+                    <a href="#" class="card-title">دورة شاملة في مادةالفيزياء باكالوريا 2025</a>
+                  </h3>
+                  <div class="wrapper">
+                    <div class="rating-wrapper">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+                    <p class="rating-text">(4.9 /5 تقييم)</p>
+                  </div>
+                  <data class="price" value="35">3000 DA</data>
+                  <ul class="card-meta-list">
+                    <li class="card-meta-item">
+                      <ion-icon name="library-outline" aria-hidden="true"></ion-icon>
+                      <span class="span">13 درس</span>
+                    </li>
+                    <li class="card-meta-item">
+                      <ion-icon name="people-outline" aria-hidden="true"></ion-icon>
+                      <span class="span">18 طالب</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <a href="#" class="btn has-before">
+            <span class="span">استعرض المزيد من الدورات</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+        <div class="best-teachers">
+          <h1>افضل الأساتذة</h1>
+          <div class="best-teachers-cards-container">
+            <div class="best-teachers-card">
+              <div class="teachers-card-details">
+                <h3>Cherif Zahar</h3>
+                <p>Algorithms</p>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#E1306C" fill="white">
+                <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M16.5 12C16.5 14.4853 14.4853 16.5 12 16.5C9.51472 16.5 7.5 14.4853 7.5 12C7.5 9.51472 9.51472 7.5 12 7.5C14.4853 7.5 16.5 9.51472 16.5 12Z" stroke="currentColor" stroke-width="1.5" />
+                <path d="M17.5078 6.5L17.4988 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="blue" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.18182 10.3333C5.20406 10.3333 5 10.5252 5 11.4444V13.1111C5 14.0304 5.20406 14.2222 6.18182 14.2222H8.54545V20.8889C8.54545 21.8081 8.74951 22 9.72727 22H12.0909C13.0687 22 13.2727 21.8081 13.2727 20.8889V14.2222H15.9267C16.6683 14.2222 16.8594 14.0867 17.0631 13.4164L17.5696 11.7497C17.9185 10.6014 17.7035 10.3333 16.4332 10.3333H13.2727V7.55556C13.2727 6.94191 13.8018 6.44444 14.4545 6.44444H17.8182C18.7959 6.44444 19 6.25259 19 5.33333V3.11111C19 2.19185 18.7959 2 17.8182 2H14.4545C11.191 2 8.54545 4.48731 8.54545 7.55556V10.3333H6.18182Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="black" fill="white">
+                <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M10.5359 11.0075C9.71585 10.8916 7.84666 11.0834 6.93011 12.7782C6.01355 14.4729 6.9373 16.2368 7.51374 16.9069C8.08298 17.5338 9.89226 18.721 11.8114 17.5619C12.2871 17.2746 12.8797 17.0603 13.552 14.8153L13.4738 5.98145C13.3441 6.95419 14.4186 9.23575 17.478 9.5057" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <button class="viewProfile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+                  <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05143L20.0969 8.58575C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1271 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58575L7.08837 8.05143C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+            <div class="best-teachers-card">
+              <div class="teachers-card-details">
+                <h3>Cherif Zahar</h3>
+                <p>Algorithms</p>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#E1306C" fill="white">
+                <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M16.5 12C16.5 14.4853 14.4853 16.5 12 16.5C9.51472 16.5 7.5 14.4853 7.5 12C7.5 9.51472 9.51472 7.5 12 7.5C14.4853 7.5 16.5 9.51472 16.5 12Z" stroke="currentColor" stroke-width="1.5" />
+                <path d="M17.5078 6.5L17.4988 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="blue" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.18182 10.3333C5.20406 10.3333 5 10.5252 5 11.4444V13.1111C5 14.0304 5.20406 14.2222 6.18182 14.2222H8.54545V20.8889C8.54545 21.8081 8.74951 22 9.72727 22H12.0909C13.0687 22 13.2727 21.8081 13.2727 20.8889V14.2222H15.9267C16.6683 14.2222 16.8594 14.0867 17.0631 13.4164L17.5696 11.7497C17.9185 10.6014 17.7035 10.3333 16.4332 10.3333H13.2727V7.55556C13.2727 6.94191 13.8018 6.44444 14.4545 6.44444H17.8182C18.7959 6.44444 19 6.25259 19 5.33333V3.11111C19 2.19185 18.7959 2 17.8182 2H14.4545C11.191 2 8.54545 4.48731 8.54545 7.55556V10.3333H6.18182Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="black" fill="white">
+                <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M10.5359 11.0075C9.71585 10.8916 7.84666 11.0834 6.93011 12.7782C6.01355 14.4729 6.9373 16.2368 7.51374 16.9069C8.08298 17.5338 9.89226 18.721 11.8114 17.5619C12.2871 17.2746 12.8797 17.0603 13.552 14.8153L13.4738 5.98145C13.3441 6.95419 14.4186 9.23575 17.478 9.5057" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <button class="viewProfile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+                  <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05143L20.0969 8.58575C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1271 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58575L7.08837 8.05143C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+            <div class="best-teachers-card">
+              <div class="teachers-card-details">
+                <h3>Cherif Zahar</h3>
+                <p>Algorithms</p>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#E1306C" fill="white">
+                <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M16.5 12C16.5 14.4853 14.4853 16.5 12 16.5C9.51472 16.5 7.5 14.4853 7.5 12C7.5 9.51472 9.51472 7.5 12 7.5C14.4853 7.5 16.5 9.51472 16.5 12Z" stroke="currentColor" stroke-width="1.5" />
+                <path d="M17.5078 6.5L17.4988 6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="blue" fill="white">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M6.18182 10.3333C5.20406 10.3333 5 10.5252 5 11.4444V13.1111C5 14.0304 5.20406 14.2222 6.18182 14.2222H8.54545V20.8889C8.54545 21.8081 8.74951 22 9.72727 22H12.0909C13.0687 22 13.2727 21.8081 13.2727 20.8889V14.2222H15.9267C16.6683 14.2222 16.8594 14.0867 17.0631 13.4164L17.5696 11.7497C17.9185 10.6014 17.7035 10.3333 16.4332 10.3333H13.2727V7.55556C13.2727 6.94191 13.8018 6.44444 14.4545 6.44444H17.8182C18.7959 6.44444 19 6.25259 19 5.33333V3.11111C19 2.19185 18.7959 2 17.8182 2H14.4545C11.191 2 8.54545 4.48731 8.54545 7.55556V10.3333H6.18182Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="black" fill="white">
+                <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M10.5359 11.0075C9.71585 10.8916 7.84666 11.0834 6.93011 12.7782C6.01355 14.4729 6.9373 16.2368 7.51374 16.9069C8.08298 17.5338 9.89226 18.721 11.8114 17.5619C12.2871 17.2746 12.8797 17.0603 13.552 14.8153L13.4738 5.98145C13.3441 6.95419 14.4186 9.23575 17.478 9.5057" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <button class="viewProfile">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+                  <path d="M13.7276 3.44418L15.4874 6.99288C15.7274 7.48687 16.3673 7.9607 16.9073 8.05143L20.0969 8.58575C22.1367 8.92853 22.6167 10.4206 21.1468 11.8925L18.6671 14.3927C18.2471 14.8161 18.0172 15.6327 18.1471 16.2175L18.8571 19.3125C19.417 21.7623 18.1271 22.71 15.9774 21.4296L12.9877 19.6452C12.4478 19.3226 11.5579 19.3226 11.0079 19.6452L8.01827 21.4296C5.8785 22.71 4.57865 21.7522 5.13859 19.3125L5.84851 16.2175C5.97849 15.6327 5.74852 14.8161 5.32856 14.3927L2.84884 11.8925C1.389 10.4206 1.85895 8.92853 3.89872 8.58575L7.08837 8.05143C7.61831 7.9607 8.25824 7.48687 8.49821 6.99288L10.258 3.44418C11.2179 1.51861 12.7777 1.51861 13.7276 3.44418Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+      <section class="video has-bg-image" aria-label="video" style="background-image: url('{% static 'core/images/video-bg.png' %}')">
+        <div class="container">
+          <div class="video-card">
+            <div class="video-banner img-holder has-after" style="--width: ; --height: ;">
+              <img src="{% static 'core/images/video-banner.jpg' %}" width="970" height="550" loading="lazy" alt="بانر الفيديو" class="img-cover">
+              <button class="play-btn" aria-label="تشغيل الفيديو">
+                <ion-icon name="play" aria-hidden="true"></ion-icon>
+              </button>
+            </div>
+            <img src="{% static 'core/images/video-shape-1.png' %}" width="1089" height="605" loading="lazy" alt="" class="shape video-shape-1">
+            <img src="{% static 'core/images/video-shape-2.png' %}" width="158" height="174" loading="lazy" alt="" class="shape videovideo-shape-2">
+            <div class="video-content">
+              <p class="section-subtitle">شاهد الفيديو</p>
+              <h2 class="h2 section-title">تعلم كيف يعمل SCHOOLINE</h2>
+              <p class="section-text">
+                انضم إلينا في هذه الرحلة التعليمية.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section blog" id="blog" aria-label="blog">
+        <div class="container">
+          <p class="section-subtitle">أحدث المقالات</p>
+          <h2 class="h2 section-title">تحديثاتنا وأخبارنا</h2>
+          <ul class="grid-list">
+            <li>
+              <article class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="{% static 'core/images/blog-1.jpg' %}" width="370" height="220" loading="lazy" alt="كيف تبدأ التعلم على الإنترنت" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="#" class="card-title">كيف تبدأ التعلم على الإنترنت</a>
+                  </h3>
+                  <p class="card-text">
+                    خطوات بسيطة للبدء في رحلتك التعليمية.
+                  </p>
+                  <a href="#" class="card-link">اقرأ المزيد</a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="{% static 'core/images/blog-2.jpg' %}" width="370" height="220" loading="lazy" alt="أفضل النصائح للدراسة الفعالة" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="#" class="card-title">أفضل النصائح للدراسة الفعالة</a>
+                  </h3>
+                  <p class="card-text">
+                    كيف يمكنك تحسين دراستك وزيادة إنتاجيتك.
+                  </p>
+                  <a href="#" class="card-link">اقرأ المزيد</a>
+                </div>
+              </article>
+            </li>
+            <li>
+              <article class="blog-card">
+                <figure class="card-banner img-holder" style="--width: 370; --height: 220;">
+                  <img src="{% static 'core/images/blog-3.jpg' %}" width="370" height="220" loading="lazy" alt="أهمية التعلم الذاتي" class="img-cover">
+                </figure>
+                <div class="card-content">
+                  <h3 class="h3">
+                    <a href="#" class="card-title">أهمية التعلم الذاتي</a>
+                  </h3>
+                  <p class="card-text">
+                    لماذا يعتبر التعلم الذاتي مهارة حيوية في عصرنا الحديث.
+                  </p>
+                  <a href="#" class="card-link">اقرأ المزيد</a>
+                </div>
+              </article>
+            </li>
+          </ul>
+          <a href="#" class="btn has-before">
+            <span class="span">استعرض المدونة</span>
+            <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>&copy; 2024 EduWeb. جميع الحقوق محفوظة.</p>
+        <ul class="footer-list">
+          <li><a href="#">سياسة الخصوصية</a></li>
+          <li><a href="#">شروط الخدمة</a></li>
+          <li><a href="#">اتصل بنا</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="{% static 'core/js/script.js' %}"></script>
+</body>
+</html>

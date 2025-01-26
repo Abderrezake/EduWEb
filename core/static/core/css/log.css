@@ -76,7 +76,7 @@ input {
 .left {
   width: 50%;
   height: 100%;
-  overflow: scroll;
+  overflow: hidden;
   background: #2C3034;
   left: 0;
   position: absolute;
@@ -103,7 +103,7 @@ input {
 .right {
   width: 50%;
   height: 100%;
-  overflow: scroll;
+  overflow: hidden;
   background: #f9f9f9;
   right: 0;
   position: absolute;

@@ -87,7 +87,7 @@ input {
 .left {
   width: 50%;
   height: 100%;
-  overflow: scroll;
+  overflow: hidden;
   background: $theme-signup-background;
   left: 0;
   position: absolute;

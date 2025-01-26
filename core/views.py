@@ -28,7 +28,7 @@ def main_page(request):
         'teachers': teachers,
         'courses': courses
     }
-    return render(request, 'core/index.html', context)
+    return render(request, 'core/main.html', context)
 
 def log_view(request):
     return render(request, 'core/log.html')
@@ -43,7 +43,6 @@ def teachers_list(request):
     query = request.GET.get('q')
     if query:
         teachers = teachers.filter(name__icontains=query)
-
     return render(request,'core/teachers.html', {'teachers': teachers})
 
 @login_required(login_url='/log')
