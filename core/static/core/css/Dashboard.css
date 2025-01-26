@@ -931,6 +931,7 @@ received-chats-img {
   border-right: none;
   border-radius: 6px 0 0 6px;
   transition: 0.3s;
+  display: flex;
 }
 .settings-page .social-boxes input {
   height: 40px;
