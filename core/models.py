@@ -135,3 +135,21 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.student} - {self.course}"
+
+class ChatThread(models.Model):
+    admin = models.ForeignKey(User, on_delete=models.CASCADE, related_name="admin_threads", limit_choices_to={"is_staff": True})
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="student_threads")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Chat between {self.admin.username} and {self.student.username}"
+
+class ChatMessage(models.Model):
+    thread = models.ForeignKey(ChatThread, on_delete=models.CASCADE, related_name="messages")
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Message from {self.sender.username} at {self.timestamp}"

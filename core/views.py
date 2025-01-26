@@ -4,7 +4,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .models import User,Follow,TeacherPage,feedbacks,Course,Video,Enrollment,Course,Student, TechTeam,Post
+from .models import User,Follow,TeacherPage,feedbacks,Course,Video,Enrollment,Course,Student, TechTeam,Post,ChatThread, ChatMessage
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.contrib import messages
 from django.http import JsonResponse
@@ -143,15 +143,48 @@ def verify_email(request, uidb64, token):
 
 
 # feedback 
+
 @login_required(login_url='/log')
 def dashboard(request):
-    student = request.user
-    return render(request,'core/Dashboard.html',{'user':student,
-                                                'nbr_courses':Enrollment.objects.filter( student=student).count(),
-                                                'teachers':Follow.objects.filter( student=student).distinct(),
-                                                'courses':Enrollment.objects.filter( student=student).order_by('-last_view'),
-                                                })
+    user = request.user
 
+    # Initialize context variables
+    nbr_courses = None
+    teachers = None
+    courses = None
+    chat_threads = None
+    all_messages = None
+    chat_threads_data = []
+
+    if user.is_techteam:  # Admin/TechTeam view
+        chat_threads = ChatThread.objects.prefetch_related('messages').all()
+        all_messages = ChatMessage.objects.select_related('thread', 'sender').order_by('timestamp')
+
+        # Prepare chat threads with the last message
+        for thread in chat_threads:
+            last_message = all_messages.filter(thread=thread).last()
+            chat_threads_data.append({
+                'thread': thread,
+                'last_message': last_message,
+            })
+    else:  # Student view
+        nbr_courses = Enrollment.objects.filter(student=user).count()
+        teachers = Follow.objects.filter(student=user).distinct()
+        courses = Enrollment.objects.filter(student=user).order_by('-last_view')
+        chat_thread = get_object_or_404(ChatThread, student=user)
+        all_messages = ChatMessage.objects.filter(thread=chat_thread).order_by('timestamp')
+
+    # Construct context
+    context = {
+        'user': user,
+        'nbr_courses': nbr_courses,
+        'teachers': teachers,
+        'courses': courses,
+        'chat_threads': chat_threads_data if user.is_techteam else chat_thread,
+        'all_messages': all_messages ,
+    }
+
+    return render(request, 'core/Dashboard.html', context)
 
 @login_required(login_url='/log')
 def submit_feedback(request):

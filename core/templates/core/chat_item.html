@@ -1,10 +1,10 @@
 <div class="chat-item">
-    <div class="chat-avatar">{{ user_initial }}</div>
+    <div class="chat-avatar">{{ user_initial|default:"?" }}</div>
     <div class="chat-details">
-        <div class="chat-name">{{ user_name }}</div>
-        <div class="chat-message">{{ user_message }}</div>
+        <div class="chat-name">{{ user_name|default:"Unknown" }}</div>
+        <div class="chat-message">{{ user_message|default:"No message" }}</div>
     </div>
-    <div class="chat-time">{{ message_time }}</div>
+    <div class="chat-time">{{ message_time|default:"" }}</div>
     {% if is_unread %}
     <div class="chat-unread"></div>
     {% endif %}
