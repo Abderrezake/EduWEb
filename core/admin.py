@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  User, Student, TechTeam,Course, TeacherPage, Post, Video, File, Comment, Follow,Student,feedbacks,Enrollment
+from .models import  User, Student, TechTeam,Course, TeacherPage, Post, Video, File, Comment, Follow,Student,feedbacks,Enrollment,ChatThread, ChatMessage
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -40,6 +40,21 @@ class EnrollmentAdmin(admin.ModelAdmin):
     list_display = ['course', 'student', 'last_view', 'status']
     search_fields = ['course__name', 'student__name']  # Add any other fields you want to search by
 
+@admin.register(ChatThread)
+class ChatThreadAdmin(admin.ModelAdmin):
+    list_display = ['id', 'admin', 'student', 'created_at']  # Columns to display
+    list_filter = ['admin', 'student']  # Filters for admin and student
+    search_fields = ['admin__username', 'student__username']  # Search by admin and student usernames
+    ordering = ['-created_at',]  # Default ordering
+
+@admin.register(ChatMessage)
+class ChatMessageAdmin(admin.ModelAdmin):
+    list_display = ('id', 'thread', 'sender', 'content', 'timestamp', 'is_read')
+    list_filter = ('is_read', 'sender')
+    search_fields = ('sender__username', 'content')
+    ordering = ('-timestamp',)
+
+
 # Register each model with its corresponding Admin class
 admin.site.register(TeacherPage, TeacherPageAdmin)
 admin.site.register(Course, CourseAdmin)
@@ -50,6 +65,8 @@ admin.site.register(Comment, CommentAdmin)
 admin.site.register(Follow, FollowAdmin)
 admin.site.register(feedbacks, FeedbacksAdmin)
 admin.site.register(Enrollment, EnrollmentAdmin)
+
+
 
 
 

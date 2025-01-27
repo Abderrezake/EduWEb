@@ -4,7 +4,7 @@ from django.contrib.auth import login,logout,authenticate
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .models import User,Follow,TeacherPage,feedbacks,Course,Video,Enrollment,Course,Student, TechTeam,Post
+from .models import User,Follow,TeacherPage,feedbacks,Course,Video,Enrollment,Course,Student, TechTeam,Post,ChatThread, ChatMessage
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.contrib import messages
 from django.http import JsonResponse
@@ -22,7 +22,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.http import urlsafe_base64_encode
 from django.utils import timezone
 def main_page(request):
-    teachers = TeacherPage.objects.all().order_by('-followers')[:4]
+    teachers = TeacherPage.objects.all().order_by('-followers')[:3]
     courses = Course.objects.all().order_by('-salles')[:3]
     context={
         'teachers': teachers,
@@ -43,6 +43,7 @@ def teachers_list(request):
     query = request.GET.get('q')
     if query:
         teachers = teachers.filter(name__icontains=query)
+
     return render(request,'core/teachers.html', {'teachers': teachers})
 
 @login_required(login_url='/log')
@@ -142,15 +143,48 @@ def verify_email(request, uidb64, token):
 
 
 # feedback 
+
 @login_required(login_url='/log')
 def dashboard(request):
-    student = request.user
-    return render(request,'core/Dashboard.html',{'user':student,
-                                                'nbr_courses':Enrollment.objects.filter( student=student).count(),
-                                                'teachers':Follow.objects.filter( student=student).distinct(),
-                                                'courses':Enrollment.objects.filter( student=student).order_by('-last_view'),
-                                                })
+    user = request.user
 
+    # Initialize context variables
+    nbr_courses = None
+    teachers = None
+    courses = None
+    chat_threads = None
+    all_messages = None
+    chat_threads_data = []
+
+    if user.is_techteam:  # Admin/TechTeam view
+        chat_threads = ChatThread.objects.prefetch_related('messages').all()
+        all_messages = ChatMessage.objects.select_related('thread', 'sender').order_by('timestamp')
+
+        # Prepare chat threads with the last message
+        for thread in chat_threads:
+            last_message = all_messages.filter(thread=thread).last()
+            chat_threads_data.append({
+                'thread': thread,
+                'last_message': last_message,
+            })
+    else:  # Student view
+        nbr_courses = Enrollment.objects.filter(student=user).count()
+        teachers = Follow.objects.filter(student=user).distinct()
+        courses = Enrollment.objects.filter(student=user).order_by('-last_view')
+        chat_thread = get_object_or_404(ChatThread, student=user)
+        all_messages = ChatMessage.objects.filter(thread=chat_thread).order_by('timestamp')
+
+    # Construct context
+    context = {
+        'user': user,
+        'nbr_courses': nbr_courses,
+        'teachers': teachers,
+        'courses': courses,
+        'chat_threads': chat_threads_data if user.is_techteam else chat_thread,
+        'all_messages': all_messages ,
+    }
+
+    return render(request, 'core/Dashboard.html', context)
 
 @login_required(login_url='/log')
 def submit_feedback(request):
@@ -336,3 +370,37 @@ def add_post(request,id):
         message = render_to_string('core/not.html', {'user': user.username,'post':post})
         send_mail('notification de zoom',message, 'schoolinenotif@gmail.com', [user.email],html_message=message)
     return redirect('core:main')
+
+
+@login_required(login_url='/log')
+def add_message(request):
+    if request.method == 'POST':
+        # Get the form data
+        message_content = request.POST.get('message')
+        sender = request.user
+
+        # Validate the message content
+        if not message_content:
+            return redirect('core:dashboard')  # Redirect even if the message is empty (or handle as needed)
+
+        # Determine the thread
+        if sender.is_techteam:  # Tech team member
+            thread_id = request.POST.get('thread_id')
+            if not thread_id:
+                return redirect('core:dashboard')  # Redirect if thread ID is missing
+            thread = get_object_or_404(ChatThread, id=thread_id)
+        else:  # Student
+            thread = get_object_or_404(ChatThread, student=sender)
+
+        # Create and save the message
+        ChatMessage.objects.create(
+            thread=thread,
+            sender=sender,
+            content=message_content,
+        )
+
+        # Redirect to the dashboard after successful submission
+        return redirect('core:dashboard')
+
+    # Handle non-POST requests by redirecting to the dashboard
+    return redirect('core:dashboard')

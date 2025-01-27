@@ -18,6 +18,7 @@ urlpatterns = [
     re_path(r'^courses/(?P<category>[\w\s\d\-_.\u0600-\u06FF]+)/(?P<level>[\w\s\d\-_.\u0600-\u06FF]+)/$', views.courses_list, name='courses'),
     path('submit_feedback/', views.submit_feedback, name='submit_feedback'),
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('add_message/', views.add_message, name='add_message'),
     path('change_password/', views.change_password, name='change_password'),
     path('change_name/', views.change_name, name='change_name'),
     path('change_email/', views.change_email, name='change_email'),
